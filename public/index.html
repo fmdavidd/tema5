@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+
+  <title>Conversor de Divisas</title>
+</head>
+<body>
+  <h1>Conversor de Divisas</h1>
+  <div class="caja">
+    
+  <h3>Hecho por: Frontera, David</h3>
+  <p>*nota:Hice que el Peso esté basado en DolarBlue*</p>
+  <form id="converterForm">
+    <label for="amount">Cantidad:</label>
+    <input type="number" id="amount" name="amount" required>
+
+    <label for="from">De:</label>
+    <select id="from" name="from">
+      <option value="USD">USD - Dólar</option>
+      <option value="EUR">EUR - Euro</option>
+      <option value="GBP">GBP - Libra</option>
+      <option value="JPY">JPY - Yen</option>
+      <option value="ARS">ARS - Peso Argentino</option>
+    </select>
+
+    <label for="to">A:</label>
+    <select id="to" name="to">
+      <option value="USD">USD - Dólar</option>
+      <option value="EUR">EUR - Euro</option>
+      <option value="GBP">GBP - Libra</option>
+      <option value="JPY">JPY - Yen</option>
+      <option value="ARS">ARS - Peso Argentino</option>
+    </select>
+
+    <button type="submit">Convertir</button>
+  </form>
+
+  <p id="result"></p>
+</div>
+  <script>
+    document.getElementById('converterForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const amount = document.getElementById('amount').value;
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+
+      fetch(`/api/convert?from=${from}&to=${to}&amount=${amount}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById('result').textContent = data.error;
+          } else {
+            document.getElementById('result').textContent = `${data.originalAmount} ${data.from} = ${data.convertedAmount} ${data.to}`;
+          }
+        })
+        .catch(error => {
+          document.getElementById('result').textContent = 'Error en la conversión';
+        });
+    });
+  </script>
+</body>
+</html>

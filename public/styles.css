@@ -1,0 +1,45 @@
+body{
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(126, 67, 182);
+    color: white;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+input{
+    width: 200px;
+    height: 30px;
+    border-radius: 8px;
+}
+select{
+    width: 200px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+p{
+    color: rgb(218, 218, 218);
+}
+button{
+    width: 200px;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
+}
+.caja{
+    background-color: rgb(64, 44, 83);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
